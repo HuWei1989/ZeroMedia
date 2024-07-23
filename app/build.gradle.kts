@@ -15,6 +15,19 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                //cppFlags += "-std=c++17  -frtti -fexceptions"
+                cppFlags += "-std=c++17"
+            }
+            ndk {
+
+            }
+        }
+        //ndkVersion = "21.4.7075529"
+        ndk {
+            abiFilters.addAll(arrayOf("arm64-v8a"))
+        }
     }
 
     buildTypes {
@@ -32,6 +45,18 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    externalNativeBuild {
+        cmake {
+            path = file("CMakeLists.txt")
+            version = "3.22.1"
+        }
+    }
+
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs("libs")
+        }
     }
     viewBinding {
         enable = true
