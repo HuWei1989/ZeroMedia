@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22.1)
 
 project("ZeroMedia")
-#include_directories(include)
+include_directories(include)
 
 #库文件地址
 set(ffmpeg_dir ${CMAKE_CURRENT_SOURCE_DIR}/libs/${ANDROID_ABI})
@@ -42,9 +42,19 @@ file(GLOB my_source_path
         ${jni_dir}/*.cpp
         ${jni_dir}/*.h
         ${jni_dir}/*.c)
+
+file(GLOB my_core_path
+        ${jni_dir}/core/*.cpp
+        ${jni_dir}/core/*.h
+        ${jni_dir}/core/*.c)
+
+file(GLOB my_biz_path
+        ${jni_dir}/biz/*.cpp
+        ${jni_dir}/biz/*.h
+        ${jni_dir}/biz/*.c)
+
 #
-add_library(hwmedia SHARED ${my_source_path})
-#add_library(ffmpegjni-lib SHARED ${jni_dir}/ffmedia.cpp)
+add_library(hwmedia SHARED ${my_source_path} ${my_core_path} ${my_biz_path})
 
 find_library( # Sets the name of the path variable.
         log-lib
@@ -69,12 +79,7 @@ target_link_libraries(
         x265
         #调用 OpenSLES 需要链接该库
         OpenSLES
-        GLESv2 EGL)
-
-
-#target_link_libraries(${CMAKE_PROJECT_NAME}
-#        android
-#        ${log-lib}
-#        #调用 OpenSLES 需要链接该库
-#        OpenSLES
-#        GLESv2 EGL)
+        GLESv2 EGL
+)
+# 引用源码 ../代表上级目录
+include_directories(include/)

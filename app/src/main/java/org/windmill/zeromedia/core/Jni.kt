@@ -6,9 +6,20 @@ package org.windmill.zeromedia.core
  * @author hw
  * @date 2024/7/18
  */
-class Jni {
+object Jni {
     init {
         System.loadLibrary("hwmedia")
     }
-    external fun initMedia()
+
+    /**
+     *
+     */
+    external fun initMedia(): Int
+
+    /**
+     *
+     */
+    external fun loadFile(path: String): Int
+
+    external fun setMediaCallback(callback: JniCallback): Boolean
 }
