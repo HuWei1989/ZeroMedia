@@ -16,6 +16,14 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+
+#RxJava的依赖包
+rxandroid = 'io.reactivex.rxjava3:rxandroid:3.0.0'
+#RxAndroid的依赖包
+rxjava = 'io.reactivex.rxjava3:rxjava:3.0.0'
+#单独使用使用下面的rxpermission（建议使用上面的rxjava+rxpermission）
+rxpermissions = 'com.github.tbruyelle:rxpermissions:0.12'
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
