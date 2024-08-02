@@ -32,4 +32,14 @@ object Jni {
     external fun mergeMedia(pathList: ArrayList<String>): Boolean
 
     external fun stopMergeMedia(): Boolean
+
+    /**
+     * 分割音视频
+     */
+    external fun segMedia(pathList: ArrayList<String>):Boolean
+
+    /**
+     * 停止分割音视频
+     */
+    external fun stopSegMedia(): Boolean
 }

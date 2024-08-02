@@ -7,25 +7,33 @@
 
 #include "../core/Config.h"
 #include "../core/BaseThread.h"
+#include "../core/AndroidLog.h"
+#include <sys/stat.h>
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
 class MergeMediaThread : public BaseThread {
 public:
 
-    vector<string> cppVector;
+    vector<string> fileList;
 
-    MergeMediaThread(vector<string> *fileList);
+    MergeMediaThread(vector<string> &fileList);
 
     ~MergeMediaThread();
 
     void run() override;
 
+    /**
+     * 在结束线程前释放线程操作的内存
+     * 子线程内操作
+     */
+    void onStop() override;
 
 private:
-
+    map<string, AVFormatContext *> mediaCtxMap;
 };
 
 

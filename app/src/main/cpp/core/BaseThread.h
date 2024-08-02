@@ -21,6 +21,8 @@ public:
 
     virtual void onStop();
 
+    virtual void onDestroy();
+
     static void *function(void *);
 
     typedef void *(*Func)(void *);
@@ -28,11 +30,18 @@ public:
     Func callback = nullptr;
 
     std::atomic<bool> cancelFlag;
+
 protected:
 
+
+
     pthread_t tid;
+
     pthread_attr_t tattr;
 
+    static void thread_exit_handler(int sig);
+
+    struct sigaction actions;
 
 };
 
