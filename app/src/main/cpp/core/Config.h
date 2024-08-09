@@ -19,7 +19,9 @@ extern "C" {
 //初始化失败
 #define ERROR_INIT_FAILED -1000
 
-#define ERROR_FILE_MISSING  -1100
+#define ERROR_FILE_MISSING  -1001
+//文件格式读取失败
+#define ERROR_FILE_MISSING -1002
 
 #define FFMPEGA_OK 0
 

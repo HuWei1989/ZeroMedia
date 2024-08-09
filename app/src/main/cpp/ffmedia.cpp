@@ -82,8 +82,9 @@ Java_org_windmill_zeromedia_core_Jni_loadFile(JNIEnv *env, jobject thiz, jobject
         env->ReleaseStringUTFChars((jstring) element, str);
         env->DeleteLocalRef(element);
     }
+    string dstFile = "";
     //开始线程的处理
-    mergeThread = new MergeMediaThread(fileList);
+    mergeThread = new MergeMediaThread(fileList, dstFile);
     mergeThread->onStart();
     LogE("主线程=%d", std::this_thread::get_id());
     if (arrayListClass) {
@@ -127,7 +128,7 @@ Java_org_windmill_zeromedia_core_Jni_segMedia(JNIEnv *env, jobject thiz, jobject
 extern "C"
 JNIEXPORT jboolean JNICALL
 Java_org_windmill_zeromedia_core_Jni_stopSegMedia(JNIEnv *env, jobject thiz) {
-    // TODO: implement stopSegMedia()
+    return false;
 }
 
 #ifdef __cplusplus

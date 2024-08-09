@@ -20,7 +20,7 @@ public:
 
     vector<string> fileList;
 
-    MergeMediaThread(vector<string> &fileList);
+    MergeMediaThread(vector<string> &fileList, string &outFile);
 
     ~MergeMediaThread();
 
@@ -34,6 +34,11 @@ public:
 
 private:
     map<string, AVFormatContext *> mediaCtxMap;
+    //输出的文件
+    string outFilePath;
+    //输出文件的上下文
+    AVFormatContext *outFormatCtx = nullptr;
+    AVPacket *pkt = nullptr;
 };
 
 
