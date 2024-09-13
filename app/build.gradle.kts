@@ -76,9 +76,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     //RxJava的依赖包
-    //implementation(libs.rxandroid)
+    implementation(libs.rxandroid)
     //RxAndroid的依赖包
-    //implementation(libs.rxjava)
+    implementation(libs.rxjava)
     //单独使用使用下面的rxpermission（建议使用上面的rxjava+rxpermission）
-    //implementation(libs.rxpermissions)
+    implementation(libs.rxpermissions)
 }

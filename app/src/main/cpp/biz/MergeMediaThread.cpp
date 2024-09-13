@@ -12,14 +12,17 @@ MergeMediaThread::MergeMediaThread(vector<string> &fileList, string &outFile) {
 
 void MergeMediaThread::run() {
     BaseThread::run();
+    int ret = 0;
+    avformat_network_init();
     for (auto itertor = fileList.begin(); itertor != fileList.end(); itertor++) {
         struct stat buffer;
         if (stat((*itertor).c_str(), &buffer) == 0) {
             LogE("%s存在", (*itertor).c_str());
             //AVFormatContext *mFormatCtx = avformat_alloc_context();
             AVFormatContext *ifmt_ctx = nullptr;
-            if (avformat_open_input(&ifmt_ctx, (*itertor).c_str(), NULL, NULL) < 0) {
+            if ((ret = avformat_open_input(&ifmt_ctx, (*itertor).c_str(), NULL, NULL)) < 0) {
                 LogE("文件读取失败%s", (*itertor).c_str());
+                LogE("错误码：%d", ret);
                 return;
             }
             if (avformat_find_stream_info(ifmt_ctx, nullptr) < 0) {
